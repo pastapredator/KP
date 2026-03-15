@@ -1,3 +1,0 @@
-User-agent: *
-Allow: /
-Sitemap: https://pastapredator.github.io/krishnapriya/sitemap.xml
