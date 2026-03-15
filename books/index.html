@@ -1,0 +1,59 @@
+---
+layout: default
+title: Books
+permalink: /books/
+---
+
+<div class="page-hero">
+  <div class="container">
+    <span class="page-hero__label">📚 The Bookshelf</span>
+    <h1 class="page-hero__title">Books</h1>
+    <p class="page-hero__sub">Read-only previews of my books. Sit back and enjoy — downloading is disabled.</p>
+  </div>
+</div>
+
+<section class="books-section">
+  <div class="container">
+    {% if site.books.size == 0 %}
+    <p style="text-align:center;font-family:var(--hand);font-size:1.4rem;color:var(--ink-muted);padding:60px 0;">
+      Books coming soon! ✨
+    </p>
+    {% else %}
+    <div class="books-grid">
+      {% for book in site.books %}
+      <div class="book-card">
+        {% if book.cover %}
+        <img src="{{ book.cover }}" alt="{{ book.title }} cover" class="book-card__cover" loading="lazy" style="display:block;height:240px;object-fit:cover;" />
+        {% else %}
+        <div class="book-card__cover" style="display:flex;flex-direction:column;gap:8px;">
+          <span style="font-size:2.5rem;">📖</span>
+          <span>{{ book.title }}</span>
+        </div>
+        {% endif %}
+
+        <div class="book-card__body">
+          <h2 class="book-card__title">{{ book.title }}</h2>
+          {% if book.author_name %}<p class="book-card__author">by {{ book.author_name }}</p>{% endif %}
+          {% if book.year %}<p style="font-size:0.8rem;color:var(--ink-faint);margin-bottom:8px;">{{ book.year }}</p>{% endif %}
+          <p class="book-card__desc">{{ book.description | default: book.excerpt | strip_html | truncatewords: 30 }}</p>
+
+          {% if book.drive_file_id %}
+          <button
+            class="book-card__cta"
+            onclick="openBookModal('{{ book.drive_file_id }}', '{{ book.title | escape }}')"
+          >
+            <i class="ph ph-book-open"></i> Read now
+          </button>
+          {% else %}
+          <span style="font-family:var(--hand);font-size:0.9rem;color:var(--ink-faint);">Coming soon</span>
+          {% endif %}
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+  </div>
+</section>
+
+<!-- Book Modal -->
+{% include book-modal.html %}
