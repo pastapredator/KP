@@ -1,0 +1,22 @@
+<div class="book-modal no-select" id="bookModal" role="dialog" aria-modal="true" aria-labelledby="bookModalTitle">
+  <div class="book-modal__inner">
+    <div class="book-modal__header">
+      <span class="book-modal__title" id="bookModalTitle">Book Reader</span>
+      <button class="book-modal__close" id="bookModalClose" aria-label="Close reader">✕</button>
+    </div>
+    <div class="book-modal__notice">
+      <i class="ph ph-lock-simple"></i>
+      &nbsp;Read-only mode — downloading is disabled.
+    </div>
+    <div class="book-modal__viewer">
+      <iframe
+        id="bookIframe"
+        src=""
+        allow="autoplay"
+        sandbox="allow-scripts allow-same-origin allow-popups"
+        title="Book Reader"
+        oncontextmenu="return false;"
+      ></iframe>
+    </div>
+  </div>
+</div>

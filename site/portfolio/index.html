@@ -1,0 +1,118 @@
+---
+layout: default
+title: Projects
+permalink: /portfolio/
+---
+
+<div class="page-hero">
+  <div class="container">
+    <span class="page-hero__label">🛠️ The Lab</span>
+    <h1 class="page-hero__title">Projects</h1>
+    <p class="page-hero__sub">Apps and side projects I've built — from ag-tech to social platforms to productivity tools.</p>
+  </div>
+</div>
+
+<section class="portfolio-section">
+  <div class="container">
+    {% if site.projects.size == 0 %}
+    <p style="text-align:center;font-family:var(--hand);font-size:1.4rem;color:var(--ink-muted);padding:60px 0;">
+      Projects coming soon! 🚀
+    </p>
+    {% else %}
+    <div class="portfolio-grid">
+      {% for project in site.projects %}
+      <a
+        href="{{ project.url | default: project.link | prepend: site.baseurl }}"
+        class="project-card"
+        {% if project.external %}target="_blank" rel="noopener"{% endif %}
+      >
+        {% if project.image %}
+        <img src="{{ project.image }}" alt="{{ project.title }}" class="project-card__img" loading="lazy" />
+        {% else %}
+        <div class="project-card__img-placeholder">
+          {{ project.emoji | default: '🔧' }}
+        </div>
+        {% endif %}
+
+        <div class="project-card__body">
+          {% if project.category %}
+          <span class="project-card__category">{{ project.category }}</span>
+          {% endif %}
+
+          <h2 class="project-card__title">{{ project.title }}</h2>
+          <p class="project-card__desc">{{ project.description | strip_html | truncatewords: 35 }}</p>
+
+          {% if project.tags %}
+          <div class="project-card__tags">
+            {% for tag in project.tags limit:4 %}
+            <span class="project-card__tag">{{ tag }}</span>
+            {% endfor %}
+          </div>
+          {% endif %}
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    <!-- Hardcoded legacy projects from resume if no collection entries yet -->
+    {% if site.projects.size == 0 %}
+    <div class="portfolio-grid">
+      <div class="project-card" style="cursor:default;">
+        <div class="project-card__img-placeholder">🌾</div>
+        <div class="project-card__body">
+          <span class="project-card__category">Ag-Tech</span>
+          <h2 class="project-card__title">Stealth Ag-Tech Startup</h2>
+          <p class="project-card__desc">Co-Founder & Product Manager at a soil and animal care startup in positive revenue. Building at the intersection of agriculture and technology.</p>
+          <div class="project-card__tags">
+            <span class="project-card__tag">Product</span>
+            <span class="project-card__tag">Ag-Tech</span>
+            <span class="project-card__tag">Startup</span>
+          </div>
+        </div>
+      </div>
+
+      <a href="#" class="project-card">
+        <div class="project-card__img-placeholder">🐦</div>
+        <div class="project-card__body">
+          <span class="project-card__category">Social</span>
+          <h2 class="project-card__title">Wyngit</h2>
+          <p class="project-card__desc">A real-time micro social network with remote config UI and multi-language support. Built from idea to launch.</p>
+          <div class="project-card__tags">
+            <span class="project-card__tag">Social</span>
+            <span class="project-card__tag">Real-time</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="#" class="project-card">
+        <div class="project-card__img-placeholder">💧</div>
+        <div class="project-card__body">
+          <span class="project-card__category">Industrial</span>
+          <h2 class="project-card__title">Pump Pandit</h2>
+          <p class="project-card__desc">Novel web platform for submersible pump selection. Co-conceived algorithms achieving a minimum 30% increase in water discharge efficiency.</p>
+          <div class="project-card__tags">
+            <span class="project-card__tag">Web</span>
+            <span class="project-card__tag">Engineering</span>
+            <span class="project-card__tag">IISc</span>
+          </div>
+        </div>
+      </a>
+
+      <div class="project-card" style="cursor:default;">
+        <div class="project-card__img-placeholder">🌱</div>
+        <div class="project-card__body">
+          <span class="project-card__category">Consultancy</span>
+          <h2 class="project-card__title">Tatasthu Works</h2>
+          <p class="project-card__desc">An innovative think tank bridging tech-blind rural clients with software professionals. Evolved into a consultancy handling grassroots design and content strategy.</p>
+          <div class="project-card__tags">
+            <span class="project-card__tag">Design</span>
+            <span class="project-card__tag">Content</span>
+            <span class="project-card__tag">Consulting</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+  </div>
+</section>
